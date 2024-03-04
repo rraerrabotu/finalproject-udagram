@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import {sequelize} from './sequelize';
 
+
 import {IndexRouter} from './controllers/v0/index.router';
 
 import bodyParser from 'body-parser';
@@ -14,7 +15,13 @@ import {V0_FEED_MODELS, V0_USER_MODELS} from './controllers/v0/model.index';
   await sequelize.addModels(V0_USER_MODELS);
 
   console.debug("Initialize database connection...");
+  console.debug("UserName: "+config.username);
+  console.debug("Password: "+config.password);
+  console.debug("database: "+config.database);
+  console.debug("Host: "+config.host);
   await sequelize.sync();
+
+
 
   const app = express();
   const port = process.env.PORT || 8080;
